@@ -39,6 +39,12 @@ const restaurant = {
     );
   },
 
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your Pasta made with ${ing1}, ${ing2}, ${ing3} and with LOVE`
+    );
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -73,8 +79,8 @@ restaurant.orderDelivery({
 // TO DESTRUCTURE AN OBJECT YOU USE THE {} AND ADD THE VARIABLES IN IT BUT THE VARIABLES WILL HAVE TO BE THE SAME AS THE
 // PROPERTY NAME
 
-const { name, categories, openingHours } = restaurant;
-console.log(name, categories, openingHours);
+// const { name, categories, openingHours } = restaurant;
+// console.log(name, categories, openingHours);
 
 // TO ENSURE THAT THE NAME IS DIFFERENT FROM THE PROPERTY NAME THEN
 
@@ -91,30 +97,30 @@ console.log(name, categories, openingHours);
 
 // To set default values
 
-const {
-  name: restaurantName = 'Shreyash',
-  openingHours: hours = '2-4',
-  mainMenu: menu = 'PIZZA',
-} = restaurant;
+// const {
+//   name: restaurantName = 'Shreyash',
+//   openingHours: hours = '2-4',
+//   mainMenu: menu = 'PIZZA',
+// } = restaurant;
 
-console.log(restaurantName, hours, menu);
+// console.log(restaurantName, hours, menu);
 
-// Mutating Variables
+// // Mutating Variables
 
-let a = 111;
-let b = 222;
-const obj = { a: 23, b: 34, c: 56 };
-({ a, b } = obj);
-console.log(a, b);
+// let a = 111;
+// let b = 222;
+// const obj = { a: 23, b: 34, c: 56 };
+// ({ a, b } = obj);
+// console.log(a, b);
 
-// Nested Object
+// // Nested Object
 
-const {
-  openingHours: {
-    fri: { open, close },
-  },
-} = restaurant;
-console.log(open, close);
+// const {
+//   openingHours: {
+//     fri: { open, close },
+//   },
+// } = restaurant;
+// console.log(open, close);
 
 /*
  *************************************************************
@@ -165,3 +171,23 @@ console.log(open, close);
 // const ratingStars = [63405, 1808];
 // const [oneStarRating = 0, twoStarRating = 0, threeStarRating = 0] = ratingStars;
 // console.log(oneStarRating, twoStarRating, threeStarRating);
+
+/*
+ *************************************************************
+                 SPREAD OPERATOR ...
+ *************************************************************
+ */
+
+const newMenu = [restaurant.mainMenu, 'Gnocci'];
+const mainMenuCopy = [...restaurant.mainMenu];
+
+const merge = [...mainMenuCopy, ...newMenu];
+console.log(...merge);
+
+// SPREAD OPERATORS WORK ON ALL ITERABLES
+// ITERABLES ARE : ARRAYS,STRINGS,SETS, MAPS.
+
+// WILL NOT WORK IN TEMPLATE LITERALS the backticks ``
+
+const ingridients = ['Tomato', 'Garlic', 'Chilli'];
+restaurant.orderPasta(...ingridients);
