@@ -33,6 +33,12 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
+  orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+    console.log(
+      `Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} has been received and will be delivered on ${time} and at location: ${address}`
+    );
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -49,46 +55,113 @@ const restaurant = {
   },
 };
 
-const arr = [1, 2, 3, 4];
-const [x, y, z] = arr; // When applying the [] to a let or const it is called destructuring that
-// is it unpacks the value stored in the array
-let [a, , c] = arr; // skipping one does not cause any problem
-console.log(x, y, z);
+/* 
+ *************************************************************
+                OBJECT DESTRUCTURING
+ *************************************************************
+*/
+
+// WE CAN SEND AN OBJECT INTO A FUNCTION AND IN THE PARAMETER LIST WE CAN PERFOMR DESTRUCTURING
+
+restaurant.orderDelivery({
+  starterIndex: 1,
+  mainIndex: 2,
+  time: '9-5',
+  address: 'Bengaluru',
+});
+
+// TO DESTRUCTURE AN OBJECT YOU USE THE {} AND ADD THE VARIABLES IN IT BUT THE VARIABLES WILL HAVE TO BE THE SAME AS THE
+// PROPERTY NAME
+
+const { name, categories, openingHours } = restaurant;
+console.log(name, categories, openingHours);
+
+// TO ENSURE THAT THE NAME IS DIFFERENT FROM THE PROPERTY NAME THEN
+
+/* So in this it must be like
+
+  const {propertyName1:variableName1,propertyName2:variableName2,propertyName3:variableName3...} = objectName;
+*/
+
+// const {
+//   name: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant;
+
+// To set default values
+
+const {
+  name: restaurantName = 'Shreyash',
+  openingHours: hours = '2-4',
+  mainMenu: menu = 'PIZZA',
+} = restaurant;
+
+console.log(restaurantName, hours, menu);
+
+// Mutating Variables
+
+let a = 111;
+let b = 222;
+const obj = { a: 23, b: 34, c: 56 };
+({ a, b } = obj);
+console.log(a, b);
+
+// Nested Object
+
+const {
+  openingHours: {
+    fri: { open, close },
+  },
+} = restaurant;
+console.log(open, close);
+
+/*
+ *************************************************************
+                  ARRAY DESTRUCTURING
+ *************************************************************
+ */
+
+// const arr = [1, 2, 3, 4];
+// const [x, y, z] = arr; // When applying the [] to a let or const it is called destructuring that
+// // is it unpacks the value stored in the array
+// let [a, , c] = arr; // skipping one does not cause any problem
+// console.log(x, y, z);
+// // console.log(a, c);
+
+// // Destructuring is very useful for swapping items
 // console.log(a, c);
+// [a, c] = [c, a];
+// console.log(a, c);
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse); // This is very helpful if we need to access 2 variables from a function that returns an array
 
-// Destructuring is very useful for swapping items
-console.log(a, c);
-[a, c] = [c, a];
-console.log(a, c);
-const [starter, mainCourse] = restaurant.order(2, 0);
-console.log(starter, mainCourse); // This is very helpful if we need to access 2 variables from a function that returns an array
+// // Also can be used for nested items
+// const nested = [2, 4, [5, 6]];
+// // const [i, , j] = nested;
+// // console.log(i, j);
+// const [i, , [j, k]] = nested; // Trying to access the inner nested values that is creating nesting destructuring
+// console.log(i, j, k);
 
-// Also can be used for nested items
-const nested = [2, 4, [5, 6]];
-// const [i, , j] = nested;
-// console.log(i, j);
-const [i, , [j, k]] = nested; // Trying to access the inner nested values that is creating nesting destructuring
-console.log(i, j, k);
+// // Also can place default values if we do not know the exact values that the array has
 
-// Also can place default values if we do not know the exact values that the array has
+// const [p = 1, q = 1, r = 1] = [100, 59];
+// console.log(p, q, r);
 
-const [p = 1, q = 1, r = 1] = [100, 59];
-console.log(p, q, r);
+// // Assignment 1,2,3
+// const books = ['Harry Potter', 'Lord Of the Rings', 'Percy Jackson'];
+// const [firstBook, secondBook] = books;
+// const [, , thirdBook] = books;
+// console.log(firstBook, secondBook, thirdBook);
 
-// Assignment 1,2,3
-const books = ['Harry Potter', 'Lord Of the Rings', 'Percy Jackson'];
-const [firstBook, secondBook] = books;
-const [, , thirdBook] = books;
-console.log(firstBook, secondBook, thirdBook);
+// const ratings = [
+//   ['rating', 4.19],
+//   ['ratingsCount', 144584],
+// ];
 
-const ratings = [
-  ['rating', 4.19],
-  ['ratingsCount', 144584],
-];
+// const [[, rating], [, ratingsCount]] = ratings;
+// console.log(`Rating = ${rating}, RatingCount = ${ratingsCount}`);
 
-const [[, rating], [, ratingsCount]] = ratings;
-console.log(`Rating = ${rating}, RatingCount = ${ratingsCount}`);
-
-const ratingStars = [63405, 1808];
-const [oneStarRating = 0, twoStarRating = 0, threeStarRating = 0] = ratingStars;
-console.log(oneStarRating, twoStarRating, threeStarRating);
+// const ratingStars = [63405, 1808];
+// const [oneStarRating = 0, twoStarRating = 0, threeStarRating = 0] = ratingStars;
+// console.log(oneStarRating, twoStarRating, threeStarRating);
