@@ -222,3 +222,63 @@ const {
 } = restaurant;
 
 console.log(Saturday, others);
+
+/*
+ *************************************************************
+                 Short Circutining
+  
+SHORT CIRCUITING is when the Boolean Operator is applied on non boolean values then the Operator
+will return the first Truthy value 
+
+*************************************************************
+ 
+
+/*                 
+                      OR || Operator
+*/
+
+console.log(
+  `---------------------Or Operator SHort Circuit----------------------`
+);
+
+// "||" Operator can work with any datatype so it will not always return boolean values if the values given are not boolean in nature
+//  When short circuit is applied using || then it will always shortcircuit for truthy values
+console.log(3 || 'HELLO');
+console.log('' || 'HELLO');
+console.log(true || 0);
+console.log(undefined || null);
+
+// Another Use case is to bypass ternary operators
+// Problem is that it will not help if the resteraunt.numGuests give 0 as then it will always give the value as 10
+
+// restaurant.numGuests =23;
+
+const guests = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+/*                 
+                      AND && Operator
+*/
+
+console.log(
+  `---------------------AND Operator SHort Circuit----------------------`
+);
+console.log(3 && 'HELLO');
+console.log('' && 'HELLO');
+console.log(true && 0);
+console.log(undefined && null);
+
+// Another Use case is to bypass ternary operators
+// Problem is that it will not help if the resteraunt.numGuests give 0 as then it will always give the value as 10
+
+// restaurant.numGuests =23;
+
+const guests3 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests);
+
+const guests4 = restaurant.numGuests && 10;
+console.log(guests2);
+//  When short circuit is applied using && then it will always shortcircuit for falsy values
