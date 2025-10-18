@@ -45,6 +45,10 @@ const restaurant = {
     );
   },
 
+  orderPizza: function (mainIngridient, ...otherIngridients) {
+    console.log(mainIngridient, otherIngridients);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -178,6 +182,8 @@ restaurant.orderDelivery({
  *************************************************************
  */
 
+// So when it is to the right of the assignment opearator '=' then it is spread
+
 const newMenu = [restaurant.mainMenu, 'Gnocci'];
 const mainMenuCopy = [...restaurant.mainMenu];
 
@@ -191,3 +197,28 @@ console.log(...merge);
 
 const ingridients = ['Tomato', 'Garlic', 'Chilli'];
 restaurant.orderPasta(...ingridients);
+
+/*
+ *************************************************************
+                 REST OPERATOR ...
+ *************************************************************
+ */
+
+//  So when it is to the left of the assignment operator then it happens it store multiple iterators to a single variable
+// Has to be  the last element & can never be more than one REST Variable
+
+// const [a, b, ...c] = [1, 2, 3, 4, 5, 6];
+// console.log(a, b, c);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+const {
+  openingHours: { sat: Saturday },
+  ...others
+} = restaurant;
+
+console.log(Saturday, others);
