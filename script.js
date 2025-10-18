@@ -249,15 +249,15 @@ console.log(true || 0);
 console.log(undefined || null);
 
 // Another Use case is to bypass ternary operators
-// Problem is that it will not help if the resteraunt.numGuests give 0 as then it will always give the value as 10
+// Error 1 : Problem is that it will not help if the resteraunt.numGuests give 0 as then it will always give the value as 10
 
-// restaurant.numGuests =23;
+// // restaurant.numGuests =23;
 
-const guests = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests);
+// const guests = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests);
 
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
 
 /*                 
                       AND && Operator
@@ -272,13 +272,27 @@ console.log(true && 0);
 console.log(undefined && null);
 
 // Another Use case is to bypass ternary operators
-// Problem is that it will not help if the resteraunt.numGuests give 0 as then it will always give the value as 10
+// Error 2 : Problem is that it will not help if the resteraunt.numGuests give 0 as then it will always give the value as 10
 
 // restaurant.numGuests =23;
 
-const guests3 = restaurant.numGuests ? restaurant.numGuests : 10;
+// const guests3 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests);
+
+// const guests4 = restaurant.numGuests && 10;
+// console.log(guests2);
+//  When short circuit is applied using && then it will always shortcircuit for falsy values
+
+// So as to ensure this error 1 & 2 does not happen we use
+
+//Null Coalescing Opearator ??
+
+// It works on using nullish values like null and undefined
+
+restaurant.numGuests = 0;
+
+const guests = restaurant.numGuests ? restaurant.numGuests : 10;
 console.log(guests);
 
-const guests4 = restaurant.numGuests && 10;
+const guests2 = restaurant.numGuests ?? 10;
 console.log(guests2);
-//  When short circuit is applied using && then it will always shortcircuit for falsy values
