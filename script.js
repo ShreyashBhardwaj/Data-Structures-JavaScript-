@@ -320,7 +320,7 @@ const rest1 = {
 
 /* ******************************************************************* 
                       Challenge
-*/
+  ********************************************************************/
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -393,4 +393,17 @@ console.warn('Step 7');
 team1 < team2 && console.log('Team 1 is winning');
 team1 > team2 && console.log('Team 2 is winning');
 
+/* ******************************************************************* 
+                      For Of Loop
+  ********************************************************************/
+
 console.error(`FOR OF Loop`);
+
+const array = [`Hello`, `Darkness`, `my`, `old`, `friends`];
+for (const arrItem of array) console.log(arrItem);
+
+// So For Of Loop by itself does not showcase the index. To see the index we have to
+
+for (const arr of array.entries) console.log(arr);
+
+// The above statement will showcase the index and the item in an array fashion. Ex: [index0, arrayItem],[index1, arrayItem]
