@@ -237,16 +237,16 @@ will return the first Truthy value
                       OR || Operator
 */
 
-console.log(
-  `---------------------Or Operator SHort Circuit----------------------`
-);
+// console.log(
+//   `---------------------Or Operator SHort Circuit----------------------`
+// );
 
 // "||" Operator can work with any datatype so it will not always return boolean values if the values given are not boolean in nature
 //  When short circuit is applied using || then it will always shortcircuit for truthy values
-console.log(3 || 'HELLO');
-console.log('' || 'HELLO');
-console.log(true || 0);
-console.log(undefined || null);
+// console.log(3 || 'HELLO');
+// console.log('' || 'HELLO');
+// console.log(true || 0);
+// console.log(undefined || null);
 
 // Another Use case is to bypass ternary operators
 // Error 1 : Problem is that it will not help if the resteraunt.numGuests give 0 as then it will always give the value as 10
@@ -263,13 +263,13 @@ console.log(undefined || null);
                       AND && Operator
 */
 
-console.log(
-  `---------------------AND Operator SHort Circuit----------------------`
-);
-console.log(3 && 'HELLO');
-console.log('' && 'HELLO');
-console.log(true && 0);
-console.log(undefined && null);
+// console.log(
+//   `---------------------AND Operator SHort Circuit----------------------`
+// );
+// console.log(3 && 'HELLO');
+// console.log('' && 'HELLO');
+// console.log(true && 0);
+// console.log(undefined && null);
 
 // Another Use case is to bypass ternary operators
 // Error 2 : Problem is that it will not help if the resteraunt.numGuests give 0 as then it will always give the value as 10
@@ -309,6 +309,88 @@ const rest1 = {
 
 //But leads to same problem which can be solved via nullish assignment operator
 
-console.log('Before OR Assigment Operator', rest1.numGuests);
-rest1.numGuests ??= 10;
-console.log('Using OR Assigment Operator', rest1.numGuests);
+// console.log('Before OR Assigment Operator', rest1.numGuests);
+// rest1.numGuests ??= 10;
+// console.log('Using OR Assigment Operator', rest1.numGuests);
+
+//
+//
+//
+//
+
+/* ******************************************************************* 
+                      Challenge
+*/
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+console.warn('CHALLENGE BEGINS');
+
+const [players1, players2] = game.players;
+console.log('step 1', players1, players2);
+
+const [gkForPlayers1, ...fieldPlayersForPlayers1] = [...players1];
+console.log('Step 2', gkForPlayers1, fieldPlayersForPlayers1);
+
+const [...allplayers] = [...players1, ...players2];
+console.log('step3', allplayers);
+
+const [...players1Final] = [...players1, 'Tihago', 'Coutinho', 'Persic'];
+console.log('step4', players1Final);
+
+const { team1, x: draw, team2 } = game.odds;
+console.log(`Step 5`, team1, draw, team2);
+
+console.warn(`Step 6`);
+const printGoals = function (...players) {
+  for (let i = 0; i < players.length; i++) {
+    console.log(players[i]);
+  }
+  console.log('No of Goals Scored:', players.length);
+};
+
+printGoals(...game.scored);
+
+console.warn('Step 7');
+team1 < team2 && console.log('Team 1 is winning');
+team1 > team2 && console.log('Team 2 is winning');
+
+console.error(`FOR OF Loop`);
