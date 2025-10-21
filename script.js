@@ -289,10 +289,26 @@ console.log(undefined && null);
 
 // It works on using nullish values like null and undefined
 
-restaurant.numGuests = 0;
+// restaurant.numGuests = 0;
 
-const guests = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests);
+// const guests = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests);
 
-const guests2 = restaurant.numGuests ?? 10;
-console.log(guests2);
+// const guests2 = restaurant.numGuests ?? 10;
+// console.log(guests2);
+
+// OR Assignment Operator works similarly to Or Operator Short Circuit
+
+const rest1 = {
+  numGuests: 0,
+};
+
+// console.log('Before OR Assigment Operator', rest1.numGuests);
+// rest1.numGuests ||= 10;
+// console.log('Using OR Assigment Operator', rest1.numGuests);
+
+//But leads to same problem which can be solved via nullish assignment operator
+
+console.log('Before OR Assigment Operator', rest1.numGuests);
+rest1.numGuests ??= 10;
+console.log('Using OR Assigment Operator', rest1.numGuests);
