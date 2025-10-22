@@ -407,3 +407,38 @@ for (const arrItem of array) console.log(arrItem);
 for (const arr of array.entries) console.log(arr);
 
 // The above statement will showcase the index and the item in an array fashion. Ex: [index0, arrayItem],[index1, arrayItem]
+
+/* ******************************************************************* 
+                      Enhancement to Object Literals
+  ********************************************************************/
+
+// const resteraunt2 = {
+//   name: 'Cooking Mama',
+//   hours: {
+//     mon: '7-9',
+//     tue: '7-9',
+//     wed: '7-9',
+//     thur: '7-9',
+//     fri: '7-9',
+//   },
+//   menu: 'Everything',
+// };
+
+// The above is an object literal
+
+//Enhancement 1 is that instead of just creating nested objects as in the hour we can just make 2 separate
+// objects and reference it in the other object. Note: the referenced object and object must have the same name as given below
+
+const hours = {
+  mon: '7-9',
+  tue: '7-9',
+  wed: '7-9',
+  thur: '7-9',
+  fri: '7-9',
+};
+
+const resteraunt2 = {
+  name: 'Cooking Mama',
+  hours,
+  menu: 'Everything',
+};
