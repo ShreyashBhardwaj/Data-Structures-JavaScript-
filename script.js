@@ -393,18 +393,53 @@ console.warn('Step 7');
 team1 < team2 && console.log('Team 1 is winning');
 team1 > team2 && console.log('Team 2 is winning');
 
+//              CHALLENGE 2
+
+// ANSWER 1
+for (const [index, value] of game.scored.entries()) {
+  console.log(`Goal ${index + 1}: ${value}`);
+}
+
+// ANSWER 2
+const odds = Object.values(game.odds);
+
+// const averageOdd =
+//   odds.reduce((accumulator, current) => accumulator + current, 0) / odds.length;
+
+const averageOdd = odds.reduce((acc, c) => {
+  const avg = c == odds[odds.length - 1] ? (acc + c) / odds.length : acc + c;
+  return avg;
+}, 0);
+
+console.log('Average:', averageOdd);
+
+// ANSWER 3
+
+for (const [key, value] of Object.entries(game.odds)) {
+  console.log(
+    `Odd of ${
+      key == 'x' ? `draw : ${draw}` : `victory ${game[key]} : ${value}`
+    }`
+  );
+}
+
+// Bonus ANSWER
+
+const goals = {};
+for (const value of game.scored.values()) {
+}
 /* ******************************************************************* 
                       For Of Loop
   ********************************************************************/
 
-console.error(`FOR OF Loop`);
+// console.error(`FOR OF Loop`);
 
-const array = [`Hello`, `Darkness`, `my`, `old`, `friends`];
-for (const arrItem of array) console.log(arrItem);
+// const array = [`Hello`, `Darkness`, `my`, `old`, `friends`];
+// for (const arrItem of array) console.log(arrItem);
 
 // So For Of Loop by itself does not showcase the index. To see the index we have to
 
-for (const arr of array.entries()) console.log(arr);
+// for (const arr of array.entries()) console.log(arr);
 
 // The above statement will showcase the index and the item in an array fashion. Ex: [index0, arrayItem],[index1, arrayItem]
 
@@ -429,46 +464,46 @@ for (const arr of array.entries()) console.log(arr);
 //Enhancement 1 is that instead of just creating nested objects as in the hour we can just make 2 separate
 // objects and reference it in the other object. Note: the referenced object and object must have the same name as given below
 
-const hours = {
-  mon: '7-9',
-  tue: '7-9',
-  wed: '7-9',
-  thur: '7-9',
-  fri: '7-9',
-};
+// const hours = {
+//   mon: '7-9',
+//   tue: '7-9',
+//   wed: '7-9',
+//   thur: '7-9',
+//   fri: '7-9',
+// };
 
-const resteraunt2 = {
-  name: 'Cooking Mama',
-  hours,
-  menu: 'Everything',
-};
+// const resteraunt2 = {
+//   name: 'Cooking Mama',
+//   hours,
+//   menu: 'Everything',
+// };
 
 // Enhancement 2: Earlier we typed a property and then assigned a function to it now we dont have to
 
-const game1 = {
-  gameOn: function () {
-    //property: function
-    console.log('Game On');
-  },
-};
+// const game1 = {
+//   gameOn: function () {
+//     //property: function
+//     console.log('Game On');
+//   },
+// };
 
-const gameEnhanced = {
-  gameOn() {
-    console.log('Game On');
-  },
-};
+// const gameEnhanced = {
+//   gameOn() {
+//     console.log('Game On');
+//   },
+// };
 
 /* 
   Enhancement 3 is just that we can instead of creating properties take the properties from an array destructure 
   it or just take a specific value enclosed in the [] that will specify as a property 
 */
 
-const weekdays = ['mon', 'tues', 'wed', 'thr', 'fri', 'sat', 'sun'];
-const open = {
-  [weekdays[1]]: console.log('Tuesday'),
-  [weekdays[3]]: console.log('Thursday'),
-  [`${weekdays[4 - 2]}`]: console.log(`${weekdays[4 - 2]}`),
-};
+// const weekdays = ['mon', 'tues', 'wed', 'thr', 'fri', 'sat', 'sun'];
+// const open = {
+//   [weekdays[1]]: console.log('Tuesday'),
+//   [weekdays[3]]: console.log('Thursday'),
+//   [`${weekdays[4 - 2]}`]: console.log(`${weekdays[4 - 2]}`),
+// };
 
 /* ******************************************************************* 
                           Optional Chaining (?.)
@@ -481,82 +516,82 @@ const open = {
 // console.log(restaurant.openingHours.mon.open); // Will Result in Error
 // The above will provide an error as monday does not exist in the restaurant
 
-console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours.mon?.open);
 // The above will check if the property mon exists then  only it will check for open property inside it but if it doesn't
 // then it will return an undefined instead of error.
 
-console.log(restaurant.openingHours?.mon?.open);
+// console.log(restaurant.openingHours?.mon?.open);
 // The above statement will first check if openingHours as a property exists or not then monday as a property exists or not
 // If both exists then the value of open property will be returned otherwise undefined
 
-for (const day of weekdays) {
-  console.log(day);
+// for (const day of weekdays) {
+//   console.log(day);
 
-  // console.log(restaurant.openingHours[day].open); `Will Result in Error`
-  console.log(restaurant?.openingHours[day]?.open ?? 'closed');
-}
+//   // console.log(restaurant.openingHours[day].open); `Will Result in Error`
+//   console.log(restaurant?.openingHours[day]?.open ?? 'closed');
+// }
 
 // Works similar to nullish coalescing
 
 // ----------------------- It also works for functions -----------------------
 
-console.log(
-  restaurant.orderPizza?.('Panner', ['Mushroom', 'Tomato', 'Capsicum'])
-  // The above statement will return undefined as I am not returning anything
-);
-console.log(restaurant.orderHealthy?.(1, 2) ?? 'Method Does not Exist');
+// console.log(
+//   restaurant.orderPizza?.('Panner', ['Mushroom', 'Tomato', 'Capsicum'])
+//   // The above statement will return undefined as I am not returning anything
+// );
+// console.log(restaurant.orderHealthy?.(1, 2) ?? 'Method Does not Exist');
 
-// ----------------------- It also works for Arrays -----------------------
+// // ----------------------- It also works for Arrays -----------------------
 
-const users = [{ name: 'Shreyash', email: 'shreyashbhardwaj@zohomail.in' }];
+// const users = [{ name: 'Shreyash', email: 'shreyashbhardwaj@zohomail.in' }];
 
-console.log(users[0]?.name ?? 'Array Empty');
+// console.log(users[0]?.name ?? 'Array Empty');
 
-/* ******************************************************************* 
-                        Iterating Over Objects
-********************************************************************/
+// /* *******************************************************************
+//                         Iterating Over Objects
+// ********************************************************************/
 
-// The thing is we do not have a direct way of iterating over Objects so we do it indirectly
-// When we iterate over objects we can do it in 3 ways
+// // The thing is we do not have a direct way of iterating over Objects so we do it indirectly
+// // When we iterate over objects we can do it in 3 ways
 
-// 1. Only Showing Properties
+// // 1. Only Showing Properties
 
-const properties = Object.keys(restaurant.openingHours);
+// const properties = Object.keys(restaurant.openingHours);
 
-console.log(
-  'Object.keys(restaurant.openingHours) contains an array with the Keys of the restaurant.opening Hours',
-  properties
-);
+// console.log(
+//   'Object.keys(restaurant.openingHours) contains an array with the Keys of the restaurant.opening Hours',
+//   properties
+// );
 
-for (const key of properties /* Instead of Properties I can directly write Object.keys(restaurant.openingHours) */) {
-  console.log(key);
-}
+// for (const key of properties /* Instead of Properties I can directly write Object.keys(restaurant.openingHours) */) {
+//   console.log(key);
+// }
 
-// 2. Only Showing Values
+// // 2. Only Showing Values
 
-const values = Object.values(restaurant.openingHours);
-console.log(
-  'Object.values(restaurant.openingHours) contains an array with the Values of the restaurant.opening Hours',
-  properties
-);
+// const values = Object.values(restaurant.openingHours);
+// console.log(
+//   'Object.values(restaurant.openingHours) contains an array with the Values of the restaurant.opening Hours',
+//   properties
+// );
 
-for (const value of values /* Instead of Properties I can directly write Object.keys(restaurant.openingHours) */) {
-  console.log(value);
-}
+// for (const value of values /* Instead of Properties I can directly write Object.keys(restaurant.openingHours) */) {
+//   console.log(value);
+// }
 
-// 3. Or showcase both at the same time
+// // 3. Or showcase both at the same time
 
-const objectValue = Object.entries(restaurant.openingHours);
+// const objectValue = Object.entries(restaurant.openingHours);
 
-console.log(
-  'Object.entire(restaurant.openingHours) contains an array with the entire object data of the restaurant.opening Hours'
-);
+// console.log(
+//   'Object.entire(restaurant.openingHours) contains an array with the entire object data of the restaurant.opening Hours'
+// );
 
-/*
-console.log(Object.entries(restaurant.openingHours));
-It works similar to the inbuilt function for arrays arrayVariable.entries(); but we do not provide any parameter for
-the entries function unlike for Object
-*/
-for (const [key, { open, close }] of objectValue) {
-  console.log(`${key} contains this value: ${open} and ${close}`);
-}
+// /*
+// console.log(Object.entries(restaurant.openingHours));
+// It works similar to the inbuilt function for arrays arrayVariable.entries(); but we do not provide any parameter for
+// the entries function unlike for Object
+// */
+// for (const [key, { open, close }] of objectValue) {
+//   console.log(`${key} contains this value: ${open} and ${close}`);
+// }
