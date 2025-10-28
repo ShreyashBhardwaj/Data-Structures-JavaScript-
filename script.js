@@ -511,3 +511,49 @@ console.log(restaurant.orderHealthy?.(1, 2) ?? 'Method Does not Exist');
 const users = [{ name: 'Shreyash', email: 'shreyashbhardwaj@zohomail.in' }];
 
 console.log(users[0]?.name ?? 'Array Empty');
+
+/* ******************************************************************* 
+                        Iterating Over Objects
+********************************************************************/
+
+// The thing is we do not have a direct way of iterating over Objects so we do it indirectly
+// When we iterate over objects we can do it in 3 ways
+
+// 1. Only Showing Properties
+
+const properties = Object.keys(restaurant.openingHours);
+
+console.log(
+  'Object.keys(restaurant.openingHours) contains an array with the Keys of the restaurant.opening Hours',
+  properties
+);
+
+for (const key of properties /* Instead of Properties I can directly write Object.keys(restaurant.openingHours) */) {
+  console.log(key);
+}
+
+// 2. Only Showing Values
+
+const values = Object.values(restaurant.openingHours);
+console.log(
+  'Object.values(restaurant.openingHours) contains an array with the Values of the restaurant.opening Hours',
+  properties
+);
+
+for (const value of values /* Instead of Properties I can directly write Object.keys(restaurant.openingHours) */) {
+  console.log(value);
+}
+
+// 3. Or showcase both at the same time
+
+const objectValue = Object.entries(restaurant.openingHours);
+
+console.log(
+  'Object.entire(restaurant.openingHours) contains an array with the entire object data of the restaurant.opening Hours'
+);
+
+console.log(Object.entries(restaurant.openingHours));
+
+for (const [key, { open, close }] of objectValue) {
+  console.log(`${key} contains this value: ${open} and ${close}`);
+}
