@@ -404,7 +404,7 @@ for (const arrItem of array) console.log(arrItem);
 
 // So For Of Loop by itself does not showcase the index. To see the index we have to
 
-for (const arr of array.entries) console.log(arr);
+for (const arr of array.entries()) console.log(arr);
 
 // The above statement will showcase the index and the item in an array fashion. Ex: [index0, arrayItem],[index1, arrayItem]
 
@@ -469,3 +469,45 @@ const open = {
   [weekdays[3]]: console.log('Thursday'),
   [`${weekdays[4 - 2]}`]: console.log(`${weekdays[4 - 2]}`),
 };
+
+/* ******************************************************************* 
+                          Optional Chaining (?.)
+********************************************************************/
+
+// If there exists an API Call where we are not certain if a certain property exists
+// then instead of using if else to check we can use Optional Chaining to check if it
+// exists or not. If it doesn't it gives the 'undefined' as answer
+
+// console.log(restaurant.openingHours.mon.open); // Will Result in Error
+// The above will provide an error as monday does not exist in the restaurant
+
+console.log(restaurant.openingHours.mon?.open);
+// The above will check if the property mon exists then  only it will check for open property inside it but if it doesn't
+// then it will return an undefined instead of error.
+
+console.log(restaurant.openingHours?.mon?.open);
+// The above statement will first check if openingHours as a property exists or not then monday as a property exists or not
+// If both exists then the value of open property will be returned otherwise undefined
+
+for (const day of weekdays) {
+  console.log(day);
+
+  // console.log(restaurant.openingHours[day].open); `Will Result in Error`
+  console.log(restaurant?.openingHours[day]?.open ?? 'closed');
+}
+
+// Works similar to nullish coalescing
+
+// ----------------------- It also works for functions -----------------------
+
+console.log(
+  restaurant.orderPizza?.('Panner', ['Mushroom', 'Tomato', 'Capsicum'])
+  // The above statement will return undefined as I am not returning anything
+);
+console.log(restaurant.orderHealthy?.(1, 2) ?? 'Method Does not Exist');
+
+// ----------------------- It also works for Arrays -----------------------
+
+const users = [{ name: 'Shreyash', email: 'shreyashbhardwaj@zohomail.in' }];
+
+console.log(users[0]?.name ?? 'Array Empty');
