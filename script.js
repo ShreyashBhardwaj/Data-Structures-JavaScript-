@@ -425,9 +425,11 @@ for (const [key, value] of Object.entries(game.odds)) {
 
 // Bonus ANSWER
 
-const goals = {};
-for (const value of game.scored.values()) {
+const score = {};
+for (const player of game.scored) {
+  score[player] ? score[player]++ : (score[player] = 1);
 }
+
 /* ******************************************************************* 
                       For Of Loop
   ********************************************************************/
