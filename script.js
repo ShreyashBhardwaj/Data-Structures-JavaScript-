@@ -442,3 +442,30 @@ const resteraunt2 = {
   hours,
   menu: 'Everything',
 };
+
+// Enhancement 2: Earlier we typed a property and then assigned a function to it now we dont have to
+
+const game1 = {
+  gameOn: function () {
+    //property: function
+    console.log('Game On');
+  },
+};
+
+const gameEnhanced = {
+  gameOn() {
+    console.log('Game On');
+  },
+};
+
+/* 
+  Enhancement 3 is just that we can instead of creating properties take the properties from an array destructure 
+  it or just take a specific value enclosed in the [] that will specify as a property 
+*/
+
+const weekdays = ['mon', 'tues', 'wed', 'thr', 'fri', 'sat', 'sun'];
+const open = {
+  [weekdays[1]]: console.log('Tuesday'),
+  [weekdays[3]]: console.log('Thursday'),
+  [`${weekdays[4 - 2]}`]: console.log(`${weekdays[4 - 2]}`),
+};
