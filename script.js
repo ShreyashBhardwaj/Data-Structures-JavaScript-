@@ -1,27 +1,5 @@
 'use strict';
 
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
-const italianFoods = new Set([
-  'pasta',
-  'gnocchi',
-  'tomatoes',
-  'olive oil',
-  'garlic',
-  'basil',
-]);
-
-const mexicanFoods = new Set([
-  'tortillas',
-  'beans',
-  'rice',
-  'tomatoes',
-  'avocado',
-  'garlic',
-]);
-
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -597,3 +575,118 @@ for (const player of game.scored) {
 // for (const [key, { open, close }] of objectValue) {
 //   console.log(`${key} contains this value: ${open} and ${close}`);
 // }
+
+/* *******************************************************************
+                      SETS
+********************************************************************/
+
+// Data needed for a later exercise
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// To make a Set
+
+// 1. Set can hold heterogenous mixture of data
+// 2. Does not hold duplicate data
+
+// Syntax:  const/let variableName = new Set(Iterable)
+
+// It must always be an iterable that is array,string
+
+const ordersSet = new Set([
+  'Shreyash',
+  'Bhavya',
+  'Ram',
+  'Shyam',
+  'Bhavya',
+  'Ram',
+]);
+
+console.log(ordersSet);
+
+const characters = new Set('Shreyash'); //It will remove the duplicates but capital and small are taken as different values
+console.log(characters);
+
+// To get the length of the set
+
+console.log(ordersSet.size);
+
+// We can check if a value exists in Set or no
+
+console.log(ordersSet.has('Shreyash')); // Will Return True
+console.log(ordersSet.has('Krishna')); // Will Return False
+
+// To add we use
+
+ordersSet.add('Krishna');
+console.log(ordersSet);
+
+// To Delete we use
+
+ordersSet.delete('Bhavya');
+console.log(ordersSet);
+
+// To delete all the values in a Set
+
+// ordersSet.clear();
+
+// As they are iterables we can use it to loop over them
+
+for (const order of ordersSet) console.log(order);
+
+// Spread Operator also works here
+
+console.log([
+  ...new Set(['Waiter', 'Chef', 'Manager', 'Waiter', 'Chef', 'Manager']),
+]);
+
+// ES 2025 new Set Operations
+const italianFoods = new Set([
+  'pasta',
+  'gnocchi',
+  'tomatoes',
+  'olive oil',
+  'garlic',
+  'basil',
+]);
+
+const mexicanFoods = new Set([
+  'tortillas',
+  'beans',
+  'rice',
+  'tomatoes',
+  'avocado',
+  'garlic',
+]);
+
+// Intersection
+const commonFoods = italianFoods.intersection(mexicanFoods);
+console.log(commonFoods);
+
+// Union
+const allFoods = mexicanFoods.union(italianFoods);
+console.log(allFoods);
+
+// Another way to achieve union without using the function
+
+console.log(new Set([...mexicanFoods, ...italianFoods]));
+
+// Then to convert to Array
+
+console.log([...new Set([...mexicanFoods, ...italianFoods])]);
+
+// Difference
+
+const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
+console.log(uniqueMexicanFoods);
+
+// Unique from both
+
+const uniqueItalianAndMexicanFoods =
+  italianFoods.symmetricDifference(mexicanFoods);
+
+console.log(uniqueItalianAndMexicanFoods);
+
+// To check if one set is completely different from another set
+
+console.log(mexicanFoods.isDisjointFrom(italianFoods));
