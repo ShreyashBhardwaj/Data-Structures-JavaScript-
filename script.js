@@ -690,3 +690,98 @@ console.log(uniqueItalianAndMexicanFoods);
 // To check if one set is completely different from another set
 
 console.log(mexicanFoods.isDisjointFrom(italianFoods));
+
+/* *******************************************************************
+                      Maps
+********************************************************************/
+
+// They store data in key:value pairs but unlike in objects the key can be any data type unlike in objects where the
+// key is always transformed to string
+
+const rest = new Map();
+rest.set('name', 'Big House');
+rest.set(1, 'Firenze ');
+
+console.log(rest);
+
+rest
+  .set('categories', [
+    'pasta',
+    'gnocchi',
+    'tomatoes',
+    'olive oil',
+    'garlic',
+    'basil',
+  ])
+  .set(true, 'We are open')
+  .set(false, 'We are close')
+  .set('open', 12)
+  .set('close', 23);
+
+console.log(rest);
+
+console.log(rest.get(true));
+console.log(rest.get('open'));
+console.log(rest.get('categories'));
+
+const time = 21;
+console.log(rest.get(time < rest.get('close') && time > rest.get('open')));
+
+// To get a certain key in this
+console.log(rest.has('categories'));
+
+// To delete
+rest.delete(1); // only deletes item based on the key provided
+
+// rest.set([1, 2, 3], 'Chicken Noodle Soup');
+// Now for the above one if we were to call it using .get
+
+console.log(rest.get([1, 2, 3])); // Will give undefined even though we have written this the same way as in the heap it points to
+// 2 different arrays [1, 2, 3]
+// To do this properly we will do
+
+const arr = [1, 2, 3];
+rest.set(arr, 'Chicken Noodle Soup');
+console.log(rest.get(arr));
+
+console.log(rest);
+console.log(rest.size); //To get the size of the map
+
+// rest.clear();  // Will delete all the values in the map
+
+/* ***************************************************
+Converting Objects to Maps                       
+*****************************************************/
+
+// Consider the below method of creating Maps
+const question = new Map([
+  ['question', 'what is your name'],
+  [1, 'Shreyash'],
+  [2, 'Ram'],
+  [3, 'Shyam'],
+  [true, 'You are correct'],
+  [false, 'You are incorrect'],
+]);
+
+// If we look carefully the output is the same as when we use Object.entries(variableObject)
+
+// So to convert an object into a Map Structure we just have to
+
+console.log('Method to convert Object to Map');
+const newMap = new Map(Object.entries(restaurant.openingHours));
+
+console.log(newMap);
+
+// So we can use for loop as map is also an iterable
+
+for (const [key, value] of question) {
+  // console.log('Hello');
+  if (typeof key === 'number') console.log(key, value);
+}
+
+const ans = 3; //Number(prompt('Your Answer'));
+console.log(question.get(ans === 3));
+
+// To convert Map back to array
+
+console.log([...question]);
