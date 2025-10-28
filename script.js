@@ -552,8 +552,11 @@ console.log(
   'Object.entire(restaurant.openingHours) contains an array with the entire object data of the restaurant.opening Hours'
 );
 
+/*
 console.log(Object.entries(restaurant.openingHours));
-
+It works similar to the inbuilt function for arrays arrayVariable.entries(); but we do not provide any parameter for
+the entries function unlike for Object
+*/
 for (const [key, { open, close }] of objectValue) {
   console.log(`${key} contains this value: ${open} and ${close}`);
 }
