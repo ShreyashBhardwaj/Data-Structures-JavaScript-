@@ -614,11 +614,6 @@ for (const [key, value] of gameEvents)
 /* *******************************************************************
                       SETS
 ********************************************************************/
-
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
 // To make a Set
 
 // 1. Set can hold heterogenous mixture of data
@@ -1002,3 +997,33 @@ button.addEventListener('click', function () {
     c++;
   }
 });
+
+// Data needed for a later exercise
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+const formatFlights = function (flights) {
+  const flightArray = flights.split('+');
+  console.log(flightArray);
+  const formatArray = [];
+  for (const flight of flightArray) {
+    const basicFormatArray = flight.replaceAll(';', ' ').split(' ');
+    formatArray.push(basicFormatArray);
+  }
+  console.log(formatArray);
+
+  const properFormat = [];
+  for (const format of formatArray) {
+    const rectifying = `${format[0].replaceAll('_', ' ')} from ${format[1]
+      .toUpperCase()
+      .slice(0, 3)} to ${format[2]
+      .toUpperCase()
+      .slice(0, 3)} (${format[3].replace(':', 'h')})`;
+    const rectifiedFormat = format[0].includes('Delayed')
+      ? `🔴 ${rectifying}`
+      : rectifying;
+    console.log(rectifiedFormat.padStart(44, ' '));
+  }
+};
+
+formatFlights(flights);
