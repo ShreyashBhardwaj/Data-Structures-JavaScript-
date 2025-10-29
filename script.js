@@ -848,7 +848,7 @@ console.log(airplane.slice(0, airplane.indexOf(' ')));
 console.log(airplane.slice(airplane.lastIndexOf(' ') + 1));
 
 // In Js we also have negative indexes which works only for slice
-console.log(airplane.slice(-1));
+console.log('Negative:', airplane.slice(-5));
 
 const checkMiddleSeat = function (seat) {
   console.log(
@@ -911,3 +911,94 @@ const checkBaggage = function (baggage) {
 };
 
 checkBaggage('gun');
+
+// Split Function that splits the string based on a splitter/delimiter and converts the remaining string into array
+
+console.log('Hi+my+name+is+Shreyash'.split('+'));
+
+const [first, second] = 'Shreyash Bhardwaj'.split(' ');
+
+console.log(first, second);
+
+// Join Function takes an array and joins all its content based on delimiter of joiner
+
+console.log(['Mr', first, second[0].toUpperCase() + second.slice(1)].join(' '));
+
+const capitalizeName = function (names) {
+  const name = names.split(' ');
+  const nameUpper = [];
+
+  for (const n of name) {
+    // nameUpper.push(n[0].toUpperCase() + n.slice(1));
+    nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  const capitalNames = nameUpper.join(' ');
+  console.log(capitalNames);
+};
+
+capitalizeName('ram shyam krishna');
+
+// Padding : It means giving a String a certain no of characters till it reaches the desired length
+
+const message = 'Go to Gate 23';
+console.log(message.padStart(25, '+').padEnd(30, '+'));
+
+const masking = function (cardNo) {
+  const card = cardNo + ''; //String(cardNo);
+  const last4Digits = card.slice(-4);
+  console.log(last4Digits.padStart(card.length, 'x'));
+};
+
+masking(1234567890);
+
+// Repeat
+
+const msg = 'Bad Weather ... All Departures Delayed ';
+console.log(msg.repeat(6));
+/*
+///////////////////////////////////////
+// Coding Challenge #4
+
+
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const button = document.querySelector('button');
+
+button.addEventListener('click', function () {
+  const getText = document.querySelector('textarea').value.split('\n');
+  console.log(getText);
+  let c = 1;
+
+  for (const text of getText) {
+    const [first, second] = text.trim().split('_');
+    const camelCase =
+      first.replace(first[0], first[0].toLowerCase()) +
+      second.replace(second[0], second[0].toUpperCase());
+    console.log(camelCase.padEnd(20, ' ') + '✅'.repeat(c) + '\n');
+    c++;
+  }
+});
