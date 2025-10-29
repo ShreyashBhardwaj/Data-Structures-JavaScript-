@@ -820,3 +820,94 @@ console.log(question.get(ans === 3));
 // To convert Map back to array
 
 console.log([...question]);
+
+/* *******************************************************************
+                      STRINGS
+********************************************************************/
+
+const airplane = 'TAP Air India';
+const plane = 'A420';
+
+console.log(plane[0]);
+console.log(plane[3]);
+console.log('Hello'[3]);
+
+console.log(airplane.length);
+console.log('Hello'.length);
+
+console.log(airplane.indexOf('r'));
+console.log(airplane.lastIndexOf('i'));
+console.log(airplane.indexOf('India'));
+
+console.log(airplane.slice(4));
+console.log(airplane.slice(4, 7));
+
+// To find the first word that we do not know the value of
+
+console.log(airplane.slice(0, airplane.indexOf(' ')));
+console.log(airplane.slice(airplane.lastIndexOf(' ') + 1));
+
+// In Js we also have negative indexes which works only for slice
+console.log(airplane.slice(-1));
+
+const checkMiddleSeat = function (seat) {
+  console.log(
+    seat.toUpperCase().slice(-1) === 'B' || seat.toUpperCase().slice(-1) === 'E'
+      ? 'Middle Seat'
+      : 'Not Middle Seat'
+  );
+};
+
+// checkMiddleSeat(prompt('Enter Seat No'));
+checkMiddleSeat('11E');
+
+console.log(airplane.toUpperCase());
+console.log(airplane);
+
+// Fix Capitalization of the String
+let nameM = 'sHreYasH';
+nameM = nameM.toLowerCase();
+nameM = nameM[0].toUpperCase() + nameM.slice(1); // nameM.slice(0, 1).toUpperCase() + nameM.slice(1);
+console.log(nameM);
+
+//Comparing Emails
+
+const email = 'a@b.c';
+const loginEmail = '   a@b.C   /n';
+
+const normalizedLoginEmail = loginEmail.toLowerCase().trim();
+// const trimLoginEmail = lowerLoginEmail.trim();
+console.log(normalizedLoginEmail);
+
+// Replace
+
+const priceGB = '288,76!!';
+let priceUS = priceGB.replace('!', '$').replace(',', '.'); //replace() only removes the first occurrence of the search string
+console.log(priceUS);
+
+priceUS = priceGB.replaceAll('!', '$').replace(',', '.');
+console.log(priceUS);
+
+// Another way to use is regular expression
+
+priceUS = priceGB.replace(/!/, '$');
+console.log(priceUS);
+
+// String Functions that return boolean values
+
+const newPlane = 'A420ne0';
+console.log(newPlane.includes('A420'));
+console.log(newPlane.includes('B420'));
+console.log(newPlane.startsWith('A4'));
+console.log(newPlane.startsWith('B420'));
+console.log(newPlane.endsWith('ne0'));
+console.log(newPlane.endsWith('vim'));
+
+const checkBaggage = function (baggage) {
+  baggage = baggage.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('not Allowed');
+  }
+};
+
+checkBaggage('gun');
